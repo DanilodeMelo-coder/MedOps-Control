@@ -24,3 +24,4 @@ public class Estoque{
         return  estoqueMedicamentos.stream().filter(medicamento -> medicamento.getNome().equals(nomeMedicamento)).findFirst().orElse(null);
     }
 }
+//teste
