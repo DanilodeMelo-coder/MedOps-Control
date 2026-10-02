@@ -1,3 +1,4 @@
+import entities.Estoque;
 import entities.Medicamento;
 
 import java.util.ArrayList;
@@ -8,8 +9,8 @@ public class Main{
     public static void main(String[] args){
 
         Scanner sc = new Scanner(System.in);
+        Estoque estoque = new Estoque();
 
-        List<Medicamento> controleMedicamentos = new ArrayList<>();
 
         boolean continuar = true;
 
@@ -23,6 +24,7 @@ public class Main{
                     System.out.println("================================");
                     System.out.println("      Cadastro Medicamentos     ");
                     System.out.println("================================");
+
 
                     String nome, principioAtivo;
                     int quantidadeEstoque;
@@ -39,7 +41,7 @@ public class Main{
                     System.out.print("Quantidade em estoque: ");
                     quantidadeEstoque = sc.nextInt();
 
-                    controleMedicamentos.add(new Medicamento(nome,principioAtivo, quantidadeEstoque));
+                    estoque.cadastrarMedicamento(new Medicamento(nome,principioAtivo, quantidadeEstoque));
 
                     System.out.printf("Medicamento %s salvo com sucesso %n", nome);
                     break;
@@ -54,7 +56,7 @@ public class Main{
                     System.out.println("MEDICAMENTO       PRINCÍPIO ATIVO       QUANTIDADE");
                     System.out.println("-------------------------------------------------------");
 
-                    for(Medicamento medicamento: controleMedicamentos){
+                    for(Medicamento medicamento: estoque.listarEstoque()){
                         System.out.println(medicamento);
                     }
                     break;
@@ -69,13 +71,13 @@ public class Main{
                     sc.nextLine();
 
                     System.out.println("Digite o nome do medicamento: ");
-                    String buscarMedicamento = sc.nextLine().toUpperCase();
+                    String medicamento = sc.nextLine().toUpperCase();
 
-                    Medicamento medicamentoBuscado = controleMedicamentos.stream().filter(medicamento -> medicamento.getNome().equals(buscarMedicamento)).findFirst().orElse(null);
+                    Medicamento medicamentoFiltro = estoque.buscarMedicamento(medicamento);
 
-                    if (medicamentoBuscado != null){
+                    if (medicamentoFiltro != null){
 
-                        System.out.println(medicamentoBuscado);
+                        System.out.println(medicamentoFiltro);
                     }
                     else {
 
