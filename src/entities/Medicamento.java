@@ -32,8 +32,8 @@ public class Medicamento {
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    public void entradaMedicamento(int quantidade){
+        this.quantidade += quantidade;
     }
 
     @Override

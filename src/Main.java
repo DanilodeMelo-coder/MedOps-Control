@@ -85,7 +85,38 @@ public class Main{
                     }
                     break;
 
+
                 case 4:
+                    System.out.println("================================");
+                    System.out.println("     Entrada de Medicamentos    ");
+                    System.out.println("================================");
+
+                    System.out.println("");
+                    sc.nextLine();
+
+                    System.out.print("Nome medicamento: ");
+                    String medicamentoEntrada = sc.nextLine().toUpperCase();
+
+                    System.out.print("quantidade de entrada: ");
+                    int quantidadeEntrada = sc.nextInt();
+
+                    int resultadoEntrada = estoque.entradaEstoque(medicamentoEntrada, quantidadeEntrada);
+
+                    if (resultadoEntrada == estoque.MEDICAMENTO_NAO_ENCONTRADO) {
+                        System.out.println("Erro! Medicamento não encontrado");
+
+                    } else if (resultadoEntrada == estoque.QUANTIDADE_ENTRADA_INVALIDA) {
+                        System.out.println("Erro! A quantidade precisa ser superior a 0");
+
+                    } else {
+                        System.out.printf("Sucesso! A entrada do medicamento %s foi um sucesso %n", medicamentoEntrada);
+
+                        System.out.println("Medicamento atualizado: " + estoque.buscarMedicamento(medicamentoEntrada));
+                    }
+
+                    break;
+
+                case 5:
 
                     System.out.println("Finalizando Programa...");
                     continuar = false;
@@ -114,7 +145,8 @@ public class Main{
         System.out.println("1 - Cadastrar medicamentos");
         System.out.println("2 - Listar medicamentos");
         System.out.println("3 - Consultar medicamentos");
-        System.out.println("4 - Sair");
+        System.out.println("4 - Entrada medicamentos");
+        System.out.println("5 - Sair");
 
         return sc.nextInt();
     }
